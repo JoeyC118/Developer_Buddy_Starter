@@ -1,0 +1,149 @@
+/* Fireplace-mansion study: dark wood, ember glow, gold trim, parchment. */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=EB+Garamond:ital@0;1&display=swap');
+
+:root {
+  --gold: #d4a64a;
+  --gold-soft: #e9cf8f;
+  --ink: #2b1d12;
+  --parchment: #f3e6c8;
+  --text: #efe2c6;
+}
+
+/* Wood-panelled walls with a warm glow from the fireplace below */
+.stApp {
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 105%, rgba(255, 120, 30, .28), transparent 70%),
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, .18) 0 2px, transparent 2px 140px),
+    linear-gradient(180deg, #1b0f09 0%, #2a170e 55%, #1a0d07 100%);
+  color: var(--text);
+}
+.stApp::after {
+  content: "";
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  height: 35vh;
+  pointer-events: none;
+  background: radial-gradient(ellipse 60% 100% at 50% 100%, rgba(255, 140, 50, .22), transparent 70%);
+  animation: flicker 3.2s infinite ease-in-out;
+}
+@keyframes flicker {
+  0%, 100% { opacity: .75; } 20% { opacity: 1; } 40% { opacity: .6; } 60% { opacity: .95; } 80% { opacity: .7; }
+}
+header[data-testid="stHeader"] { background: transparent; }
+
+/* Fit everything on one screen: trim Streamlit's default page padding */
+.block-container { padding-top: 1.4rem !important; padding-bottom: .5rem !important; max-width: 100% !important; }
+
+/* Output tabs */
+[data-baseweb="tab-list"] { gap: .4rem; }
+[data-baseweb="tab"] p {
+  color: var(--gold-soft) !important; font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem !important; font-weight: 700;
+}
+[data-baseweb="tab-highlight"] { background-color: var(--gold) !important; }
+[data-baseweb="tab-border"] { background-color: #6b4a22 !important; }
+
+/* Type */
+.stApp p, .stApp li, .stApp label { font-family: 'EB Garamond', Georgia, serif; }
+.stApp p, .stApp li { color: var(--text); font-size: 1.08rem; }
+.stApp h1, .stApp h2, .stApp h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  color: var(--gold-soft) !important;
+}
+.title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.3rem; font-weight: 700; text-align: center; line-height: 1.1;
+  color: var(--gold-soft); margin: 0; letter-spacing: .03em;
+  text-shadow: 0 0 18px rgba(255, 150, 60, .35);
+}
+.intro {
+  text-align: center; max-width: 1000px; margin: .1rem auto .8rem;
+  font-style: italic; font-size: .98rem !important; color: #d9c7a3 !important;
+}
+
+/* Inputs look like parchment */
+[data-testid="stWidgetLabel"] p {
+  color: var(--gold-soft) !important;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.2rem !important; font-weight: 700;
+}
+.stTextArea textarea {
+  background: var(--parchment) !important; color: var(--ink) !important;
+  font-family: 'EB Garamond', Georgia, serif !important; font-size: 1.05rem !important;
+}
+[data-baseweb="select"] > div {
+  background: var(--parchment) !important; border-color: #8a6a2f !important;
+}
+[data-baseweb="select"] * { color: var(--ink) !important; }
+
+/* Buttons: burgundy leather with gold trim */
+.stButton button {
+  background: linear-gradient(180deg, #7a2e1d, #4e1a10) !important;
+  border: 1px solid var(--gold) !important; border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .4);
+}
+.stButton button p {
+  color: #f6e7c1 !important; font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.2rem !important; font-weight: 700;
+}
+.stButton button:hover {
+  border-color: var(--gold-soft) !important;
+  box-shadow: 0 0 14px rgba(212, 166, 74, .45);
+}
+
+/* The Sage and his speech bubble */
+.sage-wrap { text-align: center; }
+.sage-img {
+  width: 100%; max-width: 230px;
+  animation: bob 4s ease-in-out infinite;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, .6));
+}
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.speech {
+  position: relative; max-width: 300px; margin: 1.8rem auto .9rem;
+  padding: .6rem .85rem; border: 2px solid #b8893a; border-radius: 14px;
+  background: var(--parchment); color: var(--ink);
+  font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-size: .98rem; line-height: 1.3;
+}
+.speech::after {
+  content: ""; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%);
+  border: 12px solid transparent; border-top-color: #b8893a; border-bottom: 0;
+}
+.speech .who {
+  display: block; font-style: normal; font-weight: 700; color: #6b2a14;
+  font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.1rem;
+}
+
+/* Observed evidence + journal: dark leather panels */
+.st-key-evidence, .st-key-journal {
+  background: rgba(20, 10, 5, .55); border: 1px solid #6b4a22; border-radius: 10px;
+  padding: 1rem 1.2rem; box-shadow: inset 0 0 30px rgba(0, 0, 0, .4);
+}
+
+/* The Sage's counsel (AI explanation): a parchment letter */
+.st-key-counsel, .st-key-awaiting {
+  background: linear-gradient(180deg, #f6ead0, #ead9b2);
+  border: 2px solid #b8893a; border-radius: 6px; padding: 1.2rem 1.5rem;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, .5), inset 0 0 40px rgba(120, 80, 20, .18);
+}
+.st-key-counsel p, .st-key-counsel li, .st-key-counsel strong, .st-key-counsel td, .st-key-counsel th,
+.st-key-awaiting p { color: var(--ink) !important; }
+.st-key-counsel h1, .st-key-counsel h2, .st-key-counsel h3, .st-key-counsel h4 { color: #6b2a14 !important; }
+.st-key-counsel p code, .st-key-counsel li code { background: rgba(120, 80, 20, .15); color: #5a1e10; }
+
+/* Captions */
+[data-testid="stCaptionContainer"] p { color: #bfa77a !important; font-style: italic; }
+.st-key-counsel [data-testid="stCaptionContainer"] p { color: #6e5634 !important; }
+
+/* Glossary expander */
+[data-testid="stExpander"] details {
+  background: rgba(20, 10, 5, .5); border: 1px solid #6b4a22 !important; border-radius: 8px;
+}
+[data-testid="stExpander"] summary p {
+  color: var(--gold-soft) !important; font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.15rem; font-weight: 700;
+}
+[data-testid="stExpander"] summary svg { fill: var(--gold-soft); }
+
+/* Spinner text */
+[data-testid="stSpinner"] p { color: var(--gold-soft) !important; font-style: italic; }
